@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de Galeras y Corrección · Editorial Dunken</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#004aad;--azul-osc:#003c8f;
+    --naranja:#f88f38;--naranja-osc:#d8730f;
+    /* "verde" remapeado a la paleta Dunken: azul como principal */
+    --verde:#004aad;--verde-osc:#003c8f;--verde-claro:#e7eef9;--verde-medio:#c6d6ee;
+    --rojo:#c0392b;--rojo-suave:#fbe9e7;
+    --azul-suave:#e9f0fa;--crema:#f5f6f8;--papel:#ffffff;
+    --tinta:#1c2433;--gris:#5d6675;--linea:#e6e9ef;
+    --sombra:0 16px 46px -18px rgba(0,40,90,.26);
+    --sombra-sm:0 7px 22px -10px rgba(0,40,90,.2);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Open Sans',sans-serif;color:var(--tinta);background:var(--crema);line-height:1.62;-webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--verde);color:#fff;}
+  a{color:var(--azul);}
+
+  /* HERO */
+  .hero{position:relative;background:linear-gradient(158deg,#003c8f 0%,#004aad 52%,#0a59c4 100%);color:#fff;padding:62px 24px 150px;overflow:hidden;text-align:center;}
+  .blob{position:absolute;border-radius:50%;pointer-events:none;}
+  .blob.b1{width:360px;height:360px;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%);top:-140px;right:-110px;}
+  .blob.b2{width:300px;height:300px;background:radial-gradient(circle,rgba(248,143,56,.26),transparent 70%);bottom:-120px;left:-80px;}
+  .float-el{position:absolute;opacity:.5;animation:bob 6.5s ease-in-out infinite;}
+  .float-el.f1{top:56px;left:9%;animation-delay:0s;}
+  .float-el.f2{bottom:124px;right:10%;animation-delay:2s;}
+  .float-el.f3{top:128px;right:14%;animation-delay:3.8s;}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-7deg);}50%{transform:translateY(-13px) rotate(3deg);}}
+  .hero-inner{position:relative;max-width:760px;margin:0 auto;z-index:3;}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.46);border-radius:40px;padding:7px 18px 7px 14px;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-bottom:24px;}
+  .badge svg{width:15px;height:15px;}
+  .hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(2.3rem,6.2vw,3.85rem);line-height:1.07;margin-bottom:16px;}
+  .hero h1 em{color:#ffd9b3;font-style:italic;text-decoration:underline;text-decoration-color:rgba(248,143,56,.6);text-underline-offset:6px;text-decoration-thickness:3px;}
+  .hero .lead{font-size:clamp(1rem,2.3vw,1.18rem);color:#dff0e6;max-width:560px;margin:0 auto 6px;}
+  .hero-mark{margin-top:30px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7);}
+  .scroll-cue{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.8);animation:bob2 2s ease-in-out infinite;}
+  @keyframes bob2{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(7px);}}
+
+  /* LAYOUT */
+  .wrap{max-width:900px;margin:-95px auto 0;padding:0 20px 80px;position:relative;z-index:5;}
+  .card{background:var(--papel);border-radius:22px;box-shadow:var(--sombra);padding:44px 42px;margin-bottom:26px;border:1px solid var(--linea);}
+  .sec-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:8px;}
+  .sec-ico{flex-shrink:0;width:54px;height:54px;border-radius:16px;background:#fdeddc;display:flex;align-items:center;justify-content:center;}
+  .sec-ico svg{width:29px;height:29px;}
+  .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--naranja-osc);margin-bottom:3px;}
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.5rem,3.6vw,2.05rem);color:var(--verde-osc);line-height:1.16;}
+  .sec-sub{color:var(--gris);font-size:1rem;margin:14px 0 4px;}
+  .sec-sub.lead-intro{font-size:1.08rem;color:#3a4048;line-height:1.7;}
+  .hl{color:var(--verde-osc);font-weight:600;}
+  h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;color:var(--tinta);}
+  p{color:var(--gris);}
+  p strong,li strong,span strong{color:var(--tinta);font-weight:600;}
+
+  /* INTRO destacada */
+  .intro-banner{display:flex;gap:18px;align-items:center;background:linear-gradient(135deg,var(--verde-claro),#fff);border:1px solid var(--verde-medio);border-radius:16px;padding:22px 24px;margin-top:20px;}
+  .intro-banner .ib-ico{flex-shrink:0;width:58px;height:58px;border-radius:50%;background:#fff;border:2px solid var(--naranja);display:flex;align-items:center;justify-content:center;}
+  .intro-banner .ib-ico svg{width:30px;height:30px;}
+  .intro-banner p{margin:0;font-size:.97rem;}
+  .intro-banner p b{font-family:'Fraunces',serif;color:var(--verde-osc);}
+
+  /* ÍNDICE */
+  .toc-card{background:linear-gradient(155deg,#003c8f,#0a59c4);border-radius:22px;padding:32px 36px;margin-bottom:26px;box-shadow:var(--sombra);color:#fff;}
+  .toc-card h4{font-family:'Fraunces',serif;font-size:1.12rem;margin-bottom:14px;color:#fff;}
+  .toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .toc-grid a{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff;padding:11px 13px;border-radius:11px;background:rgba(255,255,255,.09);transition:background .16s,transform .16s;font-size:.93rem;font-weight:500;}
+  .toc-grid a:hover{background:rgba(255,255,255,.22);transform:translateX(3px);}
+  .toc-grid a .tn{font-family:'Fraunces',serif;font-weight:700;color:#ffd9b3;font-size:.95rem;min-width:20px;}
+
+  /* QUÉ ES */
+  .what-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;}
+  .what{border-radius:16px;padding:22px;border:1px solid var(--linea);}
+  .what.is{background:var(--verde-claro);border-color:var(--verde-medio);}
+  .what.isnt{background:var(--rojo-suave);border-color:#f0cdc8;}
+  .what .wtag{display:flex;align-items:center;gap:8px;font-family:'Fraunces',serif;font-weight:600;font-size:1.08rem;margin-bottom:10px;}
+  .what.is .wtag{color:var(--verde-osc);}
+  .what.isnt .wtag{color:var(--rojo);}
+  .what .wtag svg{width:22px;height:22px;}
+  .what p{font-size:.92rem;margin:0;}
+  .what.is p{color:#2c5840;}
+  .what.isnt p{color:#7a3128;}
+
+  /* FORMATOS GALERA */
+  .formats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;}
+  .format{border:2px solid var(--linea);border-radius:18px;padding:24px;background:var(--papel);transition:border-color .2s,transform .2s;}
+  .format:hover{border-color:var(--naranja);transform:translateY(-4px);}
+  .format .fico{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .format.pdf .fico{background:var(--azul-suave);}
+  .format.imp .fico{background:#fcecd9;}
+  .format .fico svg{width:30px;height:30px;}
+  .format h3{font-size:1.18rem;margin-bottom:7px;}
+  .format p{font-size:.92rem;margin:0;}
+
+  /* PASOS / CÓMO MARCAR */
+  .marca-block{border-radius:16px;border:1px solid var(--linea);overflow:hidden;margin-top:18px;}
+  .marca-head{display:flex;align-items:center;gap:13px;padding:18px 22px;}
+  .marca-head .mhico{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .marca-head .mhico svg{width:25px;height:25px;}
+  .marca-head .mhtag{font-size:.71rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
+  .marca-head .mhtitle{font-family:'Fraunces',serif;font-weight:600;font-size:1.18rem;color:var(--tinta);}
+  .marca-block.digital .marca-head{background:var(--azul-suave);}
+  .marca-block.digital .mhtag{color:var(--azul);}
+  .marca-block.fisica .marca-head{background:#fcecd9;}
+  .marca-block.fisica .mhtag{color:var(--naranja-osc);}
+  .marca-body{padding:20px 22px;background:var(--papel);}
+  .marca-body .mitem{display:flex;gap:11px;align-items:flex-start;padding:9px 0;}
+  .marca-body .mitem svg{width:20px;height:20px;flex-shrink:0;margin-top:2px;}
+  .marca-body .mitem span{font-size:.93rem;}
+  .marca-body .mitem span b{color:var(--tinta);}
+
+  /* CALLOUT */
+  .callout{display:flex;gap:14px;border-radius:14px;padding:18px 20px;margin:20px 0 0;align-items:flex-start;font-size:.94rem;}
+  .callout svg{width:24px;height:24px;flex-shrink:0;}
+  .callout .cbody b{display:block;margin-bottom:3px;font-size:.97rem;}
+  .callout.warn{background:var(--rojo-suave);color:#8a3a30;}
+  .callout.warn b{color:var(--rojo);}
+  .callout.key{background:#fcecd9;color:#7a4a14;}
+  .callout.key b{color:var(--naranja-osc);}
+  .callout.info{background:var(--azul-suave);color:#27405f;}
+  .callout.info b{color:var(--azul);}
+  .callout.go{background:var(--verde-claro);color:#2c5840;}
+  .callout.go b{color:var(--verde-osc);}
+
+  /* TIPS DE ORO */
+  .tips{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  .tip{border:1px solid var(--linea);border-radius:14px;padding:18px;background:var(--papel);transition:transform .18s,box-shadow .18s;}
+  .tip:hover{transform:translateY(-3px);box-shadow:var(--sombra-sm);}
+  .tip .tico{width:40px;height:40px;border-radius:11px;background:#fdeddc;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+  .tip .tico svg{width:22px;height:22px;}
+  .tip h3{font-size:1.02rem;margin-bottom:4px;}
+  .tip p{font-size:.88rem;margin:0;}
+
+  /* CICLO DE RONDAS */
+  .ronda-flow{margin-top:22px;}
+  .ronda{display:grid;grid-template-columns:54px 1fr;gap:16px;position:relative;padding-bottom:14px;}
+  .ronda:not(:last-child)::before{content:"";position:absolute;left:26px;top:50px;bottom:-4px;width:2.5px;background:#f3cda0;border-radius:3px;}
+  .ronda .rnum{width:52px;height:52px;border-radius:14px;flex-shrink:0;background:linear-gradient(145deg,#f88f38,#d8730f);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--sombra-sm);}
+  .ronda .rnum svg{width:26px;height:26px;}
+  .ronda .rbody{background:var(--crema);border:1px solid var(--linea);border-radius:14px;padding:16px 20px;}
+  .ronda .rbody h3{font-size:1.08rem;color:var(--verde-osc);margin-bottom:3px;}
+  .ronda .rbody p{font-size:.92rem;margin:0;}
+
+  /* TAPA */
+  .tapa-banner{display:flex;gap:16px;align-items:flex-start;background:linear-gradient(135deg,#fcecd9,#fff);border:1px solid #f3cda0;border-radius:16px;padding:22px 24px;margin-top:20px;}
+  .tapa-banner .tb-ico{flex-shrink:0;width:52px;height:52px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .tapa-banner .tb-ico svg{width:28px;height:28px;}
+  .tapa-banner b{font-family:'Fraunces',serif;color:var(--naranja-osc);font-size:1.08rem;display:block;margin-bottom:3px;}
+  .tapa-banner p{font-size:.93rem;margin:0;}
+
+  /* CHECKLIST */
+  .checklist{margin-top:22px;}
+  .check-group-title{display:flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-weight:600;font-size:1.08rem;color:var(--verde-osc);margin:18px 0 10px;}
+  .check-group-title:first-child{margin-top:0;}
+  .check-group-title svg{width:20px;height:20px;}
+  .check-item{display:flex;gap:13px;align-items:flex-start;background:var(--papel);border:1.5px solid var(--linea);border-radius:12px;padding:14px 16px;margin-bottom:9px;cursor:pointer;transition:border-color .16s,background .16s;}
+  .check-item:hover{border-color:var(--naranja);}
+  .check-item input{display:none;}
+  .check-box{flex-shrink:0;width:24px;height:24px;border-radius:7px;border:2px solid var(--verde);background:#fff;display:flex;align-items:center;justify-content:center;transition:background .16s,border-color .16s;margin-top:1px;}
+  .check-box svg{width:15px;height:15px;opacity:0;transition:opacity .16s;}
+  .check-item input:checked ~ .check-box{background:var(--verde);border-color:var(--verde);}
+  .check-item input:checked ~ .check-box svg{opacity:1;}
+  .check-item input:checked ~ .check-label{text-decoration:line-through;color:var(--gris);}
+  .check-label{font-size:.94rem;color:var(--tinta);}
+  .check-label b{font-weight:600;}
+  .check-label .mini{display:block;font-size:.82rem;color:var(--gris);font-weight:400;margin-top:1px;}
+  .progress-wrap{margin-top:18px;background:var(--crema);border:1px solid var(--linea);border-radius:12px;padding:16px 18px;}
+  .progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+  .progress-top span{font-size:.88rem;font-weight:600;color:var(--tinta);}
+  .progress-top .pcount{font-family:'Fraunces',serif;color:var(--verde-osc);font-size:1.05rem;}
+  .progress-bar{height:10px;background:#dde3dd;border-radius:20px;overflow:hidden;}
+  .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--naranja),var(--verde));border-radius:20px;transition:width .3s ease;}
+  .progress-done{margin-top:10px;font-size:.9rem;color:var(--verde-osc);font-weight:600;display:none;align-items:center;gap:7px;}
+  .progress-done svg{width:18px;height:18px;}
+
+  /* FAQ */
+  details{border:1px solid var(--linea);border-radius:13px;margin-bottom:10px;overflow:hidden;background:var(--papel);transition:border-color .18s;}
+  details[open]{border-color:var(--naranja);box-shadow:var(--sombra-sm);}
+  summary{cursor:pointer;padding:17px 20px;font-weight:600;color:var(--tinta);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:.97rem;}
+  summary::-webkit-details-marker{display:none;}
+  summary:hover{color:var(--verde-osc);}
+  .qmark{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--verde-claro);color:var(--verde-osc);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem;transition:transform .22s,background .22s;}
+  details[open] .qmark{transform:rotate(45deg);background:var(--naranja);color:#fff;}
+  .answer{padding:0 20px 18px;color:var(--gris);font-size:.92rem;}
+  .answer p{margin-bottom:8px;}
+  .answer p:last-child{margin-bottom:0;}
+
+  /* CIERRE */
+  .closing{background:linear-gradient(155deg,#003c8f,#0a59c4);border:none;text-align:center;color:#fff;position:relative;overflow:hidden;}
+  .closing .blob{opacity:.7;}
+  .closing .cl-ico{width:64px;height:64px;border-radius:18px;margin:0 auto 18px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;position:relative;z-index:2;}
+  .closing .cl-ico svg{width:34px;height:34px;}
+  .closing h2{color:#fff;position:relative;z-index:2;}
+  .closing p{color:#dff0e6;position:relative;z-index:2;max-width:540px;margin:14px auto 0;}
+  .closing .sign{font-family:'Fraunces',serif;font-style:italic;font-size:1.2rem;color:#fff;margin-top:22px;position:relative;z-index:2;}
+
+  /* FOOTER */
+  footer{text-align:center;padding:30px 20px 44px;color:var(--gris);font-size:.83rem;}
+  footer .logo{font-family:'Fraunces',serif;font-weight:700;color:var(--verde-osc);font-size:1rem;}
+
+  @media(max-width:680px){
+    .card{padding:32px 22px;}
+    .toc-card{padding:26px 22px;}
+    .toc-grid,.what-row,.formats,.tips{grid-template-columns:1fr;}
+    .hero{padding:52px 20px 140px;}
+    .float-el{display:none;}
+    .sec-head{gap:12px;}
+    .sec-ico{width:48px;height:48px;}
+    .intro-banner,.tapa-banner{flex-direction:column;text-align:center;}
+    .ronda{grid-template-columns:46px 1fr;gap:12px;}
+    .ronda:not(:last-child)::before{left:22px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <!-- lupa -->
+  <svg class="float-el f1" width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#fff" stroke-width="1.6"/><path d="M16 16l5 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+  <!-- lápiz -->
+  <svg class="float-el f2" width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M12 19l7-7-4-4-7 7v4h4z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 6l2-2 4 4-2 2" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  <!-- libro abierto -->
+  <svg class="float-el f3" width="42" height="42" viewBox="0 0 24 24" fill="none"><path d="M12 5C9 3 5 3 3 4v14c2-1 6-1 9 1 3-2 7-2 9-1V4c-2-1-6-1-9 1z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 5v15" stroke="#fff" stroke-width="1.6"/></svg>
+
+  <div class="hero-inner">
+    <span class="badge">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 19l7-7-4-4-7 7v4h4z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 6l2-2 4 4-2 2" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      Manual del autor · Galeras y corrección
+    </span>
+    <h1>Llegó el momento de <em>revisar tu libro</em></h1>
+    <p class="lead">Tu obra ya está diagramada. Ahora empieza la etapa más participativa: revisar, corregir y dar el visto bueno final antes de la imprenta.</p>
+    <div class="hero-mark">Editorial Dunken · 30 años junto al autor independiente</div>
+  </div>
+  <div class="scroll-cue">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- INTRO -->
+  <section class="card">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#d8730f" stroke-width="1.8"/><path d="M16 16l5 5" stroke="#d8730f" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div><div class="eyebrow">De qué se trata esta etapa</div><h2>Tu libro, listo para revisar</h2></div>
+    </div>
+    <p class="sec-sub lead-intro">Después de la diagramación, tu libro vuelve a tus manos en forma de <span class="hl">galera</span>: una versión de prueba para que la revises con calma. Esta es <span class="hl">la etapa más participativa de todo el proceso</span> — vos y tu diseñador/a trabajan codo a codo hasta dejar el libro perfecto. Esta guía te explica cómo hacerlo bien.</p>
+    <div class="intro-banner">
+      <div class="ib-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16.5h.01" stroke="#d8730f" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="#d8730f" stroke-width="1.7"/></svg></div>
+      <p><b>Lo más importante de esta etapa:</b> lo que autorices es <strong>exactamente lo que se va a imprimir</strong>. Tomate el tiempo de revisar con atención — esta es tu oportunidad de dejar todo como querés.</p>
+    </div>
+  </section>
+
+  <!-- ÍNDICE -->
+  <nav class="toc-card">
+    <h4>🔍 Qué vas a encontrar acá</h4>
+    <div class="toc-grid">
+      <a href="#que-es"><span class="tn">1</span> Qué es una galera</a>
+      <a href="#recibir"><span class="tn">2</span> Cómo vas a recibirla</a>
+      <a href="#marcar"><span class="tn">3</span> Cómo marcar las correcciones</a>
+      <a href="#rondas"><span class="tn">4</span> El ida y vuelta de galeras</a>
+      <a href="#tapa"><span class="tn">5</span> La galera de tapa</a>
+      <a href="#autorizar"><span class="tn">6</span> La autorización final</a>
+      <a href="#checklist"><span class="tn">7</span> Checklist antes de autorizar</a>
+      <a href="#faq"><span class="tn">8</span> Preguntas frecuentes</a>
+    </div>
+  </nav>
+
+  <!-- 1. QUÉ ES -->
+  <section class="card" id="que-es">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="#d8730f" stroke-width="1.7"/><path d="M9 7h7M9 10h5" stroke="#f88f38" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div><div class="eyebrow">El concepto</div><h2>Qué es una galera</h2></div>
+    </div>
+    <p class="sec-sub">La <strong>galera</strong> (o prueba de galera) es una versión preliminar de tu libro ya diagramado: el texto con la fisonomía que tendrá el libro impreso. Sirve para que revises cómo quedó, detectes errores y marques los cambios que quieras antes de la impresión.</p>
+
+    <div class="what-row">
+      <div class="what is">
+        <div class="wtag"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#004aad" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>La galera SÍ es</div>
+        <p>Una versión de prueba para revisar con calma. Tu oportunidad de pedir todos los cambios que necesites. Un trabajo en conjunto con tu diseñador/a.</p>
+      </div>
+      <div class="what isnt">
+        <div class="wtag"><svg viewBox="0 0 24 24" fill="none"><path d="M7 7l10 10M17 7L7 17" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round"/></svg>La galera NO es</div>
+        <p>La versión final ni definitiva. Puede que la primera venga más estándar o que haya detalles a ajustar — para eso existe esta etapa.</p>
+      </div>
+    </div>
+
+    <div class="callout key">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0012 3z" stroke="#d8730f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="cbody"><b>Sobre la primera galera</b>La primera prueba es la que suele tener más correcciones, y es completamente normal. Es el momento de marcarle a tu diseñador/a absolutamente todo lo que quieras ajustar: tipografía, espacios, errores, formato. Cuanto más clara sea tu primera devolución, más rápido se encamina el resto.</div>
+    </div>
+  </section>
+
+  <!-- 2. CÓMO RECIBIRLA -->
+  <section class="card" id="recibir">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#d8730f" stroke-width="1.7"/><path d="M3.5 6l8.5 7 8.5-7" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+      <div><div class="eyebrow">Formatos</div><h2>Cómo vas a recibir tu galera</h2></div>
+    </div>
+    <p class="sec-sub">Podés revisar tu galera en dos formatos. Elegís el que te resulte más cómodo:</p>
+
+    <div class="formats">
+      <div class="format pdf">
+        <div class="fico"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6z" stroke="#004aad" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v4h4" stroke="#004aad" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 13h6M9 16h4" stroke="#f88f38" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+        <h3>En PDF, por mail</h3>
+        <p>Te enviamos el archivo digital a tu correo. Lo revisás desde tu compu y marcás las correcciones sobre el mismo PDF.</p>
+      </div>
+      <div class="format imp">
+        <div class="fico"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9V3h12v6M6 18h12v3H6zM4 9h16v7H4z" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3>Impresa, en papel</h3>
+        <p>Imprimimos la galera y la retirás por la editorial (o coordinás el envío). La corregís a mano sobre el cuadernillo.</p>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#004aad" stroke-width="1.7"/><path d="M12 11v5" stroke="#004aad" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="1.2" fill="#004aad"/></svg>
+      <div class="cbody"><b>¿Cuál conviene?</b>Las dos sirven igual. El PDF es más rápido y cómodo si estás familiarizado/a con la compu. El papel es ideal si preferís leer y marcar a mano. Avisale a tu diseñador/a cuál preferís.</div>
+    </div>
+  </section>
+
+  <!-- 3. CÓMO MARCAR -->
+  <section class="card" id="marcar">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19l7-7-4-4-7 7v4h4z" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 6l2-2 4 4-2 2" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+      <div><div class="eyebrow">Lo importante</div><h2>Cómo marcar las correcciones</h2></div>
+    </div>
+    <p class="sec-sub">Marcar bien tus correcciones es lo que hace que el proceso sea rápido y sin errores. Acá va el cómo, según el formato que hayas elegido.</p>
+
+    <!-- DIGITAL -->
+    <div class="marca-block digital">
+      <div class="marca-head">
+        <div class="mhico"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6z" stroke="#004aad" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 3v4h4" stroke="#004aad" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <div><div class="mhtag">Si elegiste PDF</div><div class="mhtitle">Corrección digital</div></div>
+      </div>
+      <div class="marca-body">
+        <div class="mitem"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#004aad" stroke-width="1.7"/><path d="M9 12l2 2 4-4" stroke="#004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Marcá directamente sobre el archivo.</b> Usá las herramientas de "comentario" o "resaltador" del lector de PDF para señalar cada cambio.</span></div>
+        <div class="mitem"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#004aad" stroke-width="1.7"/><path d="M9 12l2 2 4-4" stroke="#004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>O hacé un listado aparte.</b> Si preferís, podés enviar un documento con los cambios detallados, indicando siempre <strong>número de página y párrafo</strong>.</span></div>
+        <div class="mitem"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#004aad" stroke-width="1.7"/><path d="M9 12l2 2 4-4" stroke="#004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sea cual sea la forma, que cada corrección quede <strong>clara y sin ambigüedad</strong>: qué dice y qué debería decir.</span></div>
+      </div>
+    </div>
+
+    <!-- FÍSICA -->
+    <div class="marca-block fisica">
+      <div class="marca-head">
+        <div class="mhico"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9V3h12v6M4 9h16v7H4zM6 18h12v3H6z" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <div><div class="mhtag">Si elegiste impresa</div><div class="mhtitle">Corrección en papel</div></div>
+      </div>
+      <div class="marca-body">
+        <div class="mitem"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#c0392b" stroke-width="1.7"/><path d="M9 12l2 2 4-4" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Corregí en tinta roja.</b> Marcá tus cambios directamente sobre el cuadernillo impreso, con birome roja para que se distingan bien del texto.</span></div>
+        <div class="mitem"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#c0392b" stroke-width="1.7"/><path d="M9 12l2 2 4-4" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Letra clara y legible.</b> El diseñador/a transcribe lo que marcaste, así que la prolijidad evita malentendidos.</span></div>
+        <div class="mitem"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#c0392b" stroke-width="1.7"/><path d="M9 12l2 2 4-4" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cuando termines, podés acercar el cuadernillo a la editorial o coordinar el envío.</span></div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l9 16H3z" stroke="#c0392b" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v4M12 16h.01" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/></svg>
+      <div class="cbody"><b>Una sola tanda, todo junto</b>Reuní todas tus correcciones y enviálas en un solo envío, a tu diseñador/a. Mandar cambios sueltos en varios mensajes —o a distintas personas de la editorial— genera confusiones, errores y demoras. Si tenés aclaraciones, que vayan claras en el cuerpo del mail.</div>
+    </div>
+  </section>
+
+  <!-- 4. RONDAS -->
+  <section class="card" id="rondas">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0114-5M20 12a8 8 0 01-14 5" stroke="#d8730f" stroke-width="1.8" stroke-linecap="round"/><path d="M18 3v4h-4M6 21v-4h4" stroke="#d8730f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="eyebrow">El proceso</div><h2>El ida y vuelta de galeras</h2></div>
+    </div>
+    <p class="sec-sub">La corrección no es un único paso, sino un ciclo que se repite hasta que el libro queda como querés. Así funciona:</p>
+
+    <div class="ronda-flow">
+      <div class="ronda">
+        <div class="rnum"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v12H7l-3 3z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="rbody"><h3>Recibís la galera</h3><p>El diseñador/a te envía la prueba (PDF o impresa) para que la revises.</p></div>
+      </div>
+      <div class="ronda">
+        <div class="rnum"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19l7-7-4-4-7 7v4h4z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <div class="rbody"><h3>Marcás tus correcciones</h3><p>Revisás con calma y enviás todos los cambios juntos, en un solo envío.</p></div>
+      </div>
+      <div class="ronda">
+        <div class="rnum"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0114-5M18 3v4h-4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12a8 8 0 01-14 5M6 21v-4h4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="rbody"><h3>Recibís una nueva versión</h3><p>El diseñador/a aplica los cambios y te devuelve una galera actualizada para que la revises.</p></div>
+      </div>
+      <div class="ronda">
+        <div class="rnum"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="rbody"><h3>Repetís hasta que esté perfecto</h3><p>El ciclo se repite las veces que haga falta. Cuando ya no haya nada que cambiar, pasás a la autorización final.</p></div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="13" r="8" stroke="#004aad" stroke-width="1.7"/><path d="M12 9v4l3 2" stroke="#004aad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 2h6" stroke="#004aad" stroke-width="2" stroke-linecap="round"/></svg>
+      <div class="cbody"><b>El ritmo lo marcás vos</b>Cuanto más ágil sea tu devolución de cada galera, antes avanza el libro. Te sugerimos revisar y enviar tus correcciones dentro de los 7 días de recibir cada prueba. La etapa de galeras es, justamente, donde más se puede estirar el proceso — así que tu ritmo es clave.</div>
+    </div>
+  </section>
+
+  <!-- 5. TAPA -->
+  <section class="card" id="tapa">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="1.5" stroke="#d8730f" stroke-width="1.7"/><path d="M9 3v18" stroke="#d8730f" stroke-width="1.7"/><circle cx="14" cy="9" r="2" stroke="#f88f38" stroke-width="1.6"/></svg></div>
+      <div><div class="eyebrow">No solo el interior</div><h2>La galera de tapa</h2></div>
+    </div>
+    <p class="sec-sub">Además del interior, también vas a recibir una <strong>prueba de tapa</strong>. Funciona igual: la revisás, marcás los cambios y la corregís hasta que quede como querés. La tapa se trabaja y se autoriza por separado del interior.</p>
+
+    <div class="tapa-banner">
+      <div class="tb-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="8" r="2.5" stroke="#d8730f" stroke-width="1.7"/><path d="M4 19l6-6 4 4 6-6" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="#d8730f" stroke-width="1.7"/></svg></div>
+      <div>
+        <b>Qué revisar en la tapa</b>
+        <p>Chequeá con atención: colores, tipografías, ortografía de los textos, imágenes y ubicación de los elementos. Si querés cambiar algo —un color, una imagen, una tipografía— lo más útil es enviar referencias o ejemplos de lo que tenés en mente, así el diseñador/a entiende exactamente lo que buscás.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. AUTORIZACIÓN -->
+  <section class="card" id="autorizar">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h10l4 4v12H5z" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 4v4h4" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 13l2.5 2.5L16 10" stroke="#f88f38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="eyebrow">El paso decisivo</div><h2>La autorización final</h2></div>
+    </div>
+    <p class="sec-sub">Cuando ya revisaste todo y no queda nada por cambiar, llega el momento de <strong>autorizar la impresión</strong>. Es el paso más importante de esta etapa.</p>
+
+    <div class="tips" style="margin-top:18px;">
+      <div class="tip">
+        <div class="tico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h10l4 4v12H5z" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 4v4h4" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3>Se firma la hoja de autorización</h3>
+        <p>La hoja de Autorización de impresión se completa y firma solo cuando das el OK definitivo. No antes.</p>
+      </div>
+      <div class="tip">
+        <div class="tico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4.5A2.5 2.5 0 016.5 2H20v18H6.5A2.5 2.5 0 004 22.5z" stroke="#d8730f" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+        <h3>Interior y tapa, por separado</h3>
+        <p>Autorizás el interior cuando esté listo, y la tapa cuando esté lista. Son dos OK distintos.</p>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l9 16H3z" stroke="#c0392b" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v4M12 16h.01" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/></svg>
+      <div class="cbody"><b>Lo que autorizás es lo que se imprime</b>Una vez dada la autorización final, el archivo va a imprenta tal cual está: no se pueden hacer más cambios en esa edición. Por eso es fundamental que controles que todo esté correcto y que no falte nada antes de dar el OK. Revisá con calma — esa versión es exactamente la que vas a tener en tus manos.</div>
+    </div>
+
+    <div class="callout key">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="#d8730f" stroke-width="1.7"/><path d="M3 10h18" stroke="#d8730f" stroke-width="1.7"/><path d="M7 15h4" stroke="#d8730f" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <div class="cbody"><b>Chequeá la cantidad de páginas</b>Antes de autorizar, controlá que el número de páginas no difiera del que figuraba en tu presupuesto. Si cambió —porque sumaste o quitaste contenido—, puede haber un ajuste en el saldo: una devolución a tu favor, o un saldo a abonar. Verlo ahora evita sorpresas. Podés revisarlo en tu Panel de Autor.</div>
+    </div>
+  </section>
+
+  <!-- 7. CHECKLIST -->
+  <section class="card" id="checklist">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="#d8730f" stroke-width="1.7"/><path d="M8 12l3 3 5-6" stroke="#d8730f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><div class="eyebrow">Antes de dar el OK</div><h2>Checklist antes de autorizar</h2></div>
+    </div>
+    <p class="sec-sub">Antes de dar tu autorización final, repasá esta lista. Marcá cada punto a medida que lo verificás. Recordá: lo que autorizás es lo que se imprime.</p>
+
+    <div class="checklist">
+      <div class="check-group-title">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h8l4 4v14H6z" stroke="#004aad" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v4h4" stroke="#004aad" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        Revisé el interior
+      </div>
+      <label class="check-item">
+        <input type="checkbox" class="ck">
+        <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="check-label"><b>El texto está completo y correcto</b><span class="mini">Sin errores, sin páginas faltantes, todo en orden</span></span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" class="ck">
+        <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="check-label"><b>Mis correcciones anteriores se aplicaron</b><span class="mini">Revisé que la última galera tenga todos los cambios que pedí</span></span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" class="ck">
+        <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="check-label"><b>Las páginas preliminares están bien</b><span class="mini">Dedicatoria, prólogo, índice, datos del libro</span></span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" class="ck">
+        <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="check-label"><b>Las imágenes se ven bien</b><span class="check-opt" style="font-size:.68rem;font-weight:700;color:var(--gris);background:var(--crema);border:1px solid var(--linea);border-radius:20px;padding:1px 8px;margin-left:5px;">si lleva</span></span>
+      </label>
+
+      <div class="check-group-title">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="1.5" stroke="#004aad" stroke-width="1.7"/><path d="M9 3v18" stroke="#004aad" stroke-width="1.7"/></svg>
+        Revisé la tapa
+      </div>
+      <label class="check-item">
+        <input type="checkbox" class="ck">
+        <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="check-label"><b>Título, autor y textos de tapa correctos</b><span class="mini">Sin errores de ortografía en portada, contratapa y lomo</span></span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" class="ck">
+        <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="check-label"><b>Colores, imagen y tipografía como los quiero</b></span>
+      </label>
+
+      <div class="check-group-title">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#004aad" stroke-width="1.7"/><path d="M12 7v5l3 3" stroke="#004aad" stroke-width="1.8" stroke-linecap="round"/></svg>
+        El último chequeo
+      </div>
+      <label class="check-item">
+        <input type="checkbox" class="ck">
+        <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="check-label"><b>Verifiqué la cantidad de páginas</b><span class="mini">Comparé con el presupuesto; si cambió, sé que puede haber ajuste de saldo</span></span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" class="ck">
+        <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="check-label"><b>Entiendo que esto es lo que se imprime</b><span class="mini">No habrá más cambios en esta edición después de autorizar</span></span>
+      </label>
+
+      <div class="progress-wrap">
+        <div class="progress-top">
+          <span>Tu revisión</span>
+          <span class="pcount"><span id="done">0</span> / <span id="total">8</span></span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+        <div class="progress-done" id="doneMsg">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#004aad"/><path d="M7 12l3.5 3.5L17 8" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          ¡Revisaste todo! Ya podés dar tu autorización con tranquilidad.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section class="card" id="faq">
+    <div class="sec-head">
+      <div class="sec-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#d8730f" stroke-width="1.8"/><path d="M9.5 9.5a2.5 2.5 0 014.5 1.5c0 1.7-2.5 2-2.5 3.5" stroke="#d8730f" stroke-width="1.8" stroke-linecap="round"/><circle cx="11.9" cy="17" r="1.1" fill="#f88f38"/></svg></div>
+      <div><div class="eyebrow">Dudas habituales</div><h2>Preguntas frecuentes</h2></div>
+    </div>
+    <p class="sec-sub">Las consultas que más aparecen durante esta etapa.</p>
+    <div style="margin-top:20px;">
+      <details>
+        <summary>¿Cuántas veces puedo corregir la galera?<span class="qmark">+</span></summary>
+        <div class="answer"><p>El ida y vuelta de galeras se repite las veces que haga falta hasta que el libro quede como querés. La primera prueba es la que suele tener más cambios. Lo importante es centralizar todo en cada envío y mantener un buen ritmo, porque cada ronda lleva su tiempo de trabajo.</p></div>
+      </details>
+      <details>
+        <summary>¿Puedo cambiar algo después de autorizar?<span class="qmark">+</span></summary>
+        <div class="answer"><p>No. Una vez dada la autorización final, el archivo se envía a imprenta tal como está y no se pueden hacer cambios en esa edición. Por eso es tan importante revisar todo con atención antes de dar el OK. Si encontraras algo urgente, contactá de inmediato a tu diseñador/a, pero no hay garantía de poder frenar el proceso.</p></div>
+      </details>
+      <details>
+        <summary>¿Por qué cambió la cantidad de páginas de mi libro?<span class="qmark">+</span></summary>
+        <div class="answer"><p>La cantidad de páginas puede variar al diagramar, o si sumaste o quitaste contenido respecto del original. Como el presupuesto se calcula según la extensión, un cambio de páginas puede generar un ajuste: una devolución a tu favor si quedó más corto, o un saldo a abonar si quedó más largo. Lo vas a poder ver en tu Panel de Autor.</p></div>
+      </details>
+      <details>
+        <summary>La primera galera no se ve como esperaba, ¿es normal?<span class="qmark">+</span></summary>
+        <div class="answer"><p>Sí, es totalmente normal. La primera prueba puede venir más estándar o con detalles a ajustar — su función es que veas la estructura y marques todo lo que quieras cambiar. A partir de tus correcciones, el diseñador/a va afinando el libro hasta llegar a la versión que tenés en mente.</p></div>
+      </details>
+      <details>
+        <summary>¿A quién le envío mis correcciones?<span class="qmark">+</span></summary>
+        <div class="answer"><p>Siempre a tu diseñador/a asignado/a, que es quien está trabajando tu libro. Centralizá todo con esa persona y evitá mandar correcciones a varios contactos de la editorial a la vez: eso genera confusiones y demoras.</p></div>
+      </details>
+      <details>
+        <summary>¿Cómo autorizo la impresión?<span class="qmark">+</span></summary>
+        <div class="answer"><p>Cuando ya no haya nada que cambiar, das tu OK final y se completa y firma la hoja de Autorización de impresión. Recién ahí el libro pasa a imprenta. Se autoriza el interior y la tapa por separado, cada uno cuando esté listo.</p></div>
+      </details>
+      <details>
+        <summary>¿Cuánto tiempo tengo para revisar cada galera?<span class="qmark">+</span></summary>
+        <div class="answer"><p>No hay un límite estricto, pero te recomendamos enviar tus correcciones dentro de los 7 días de recibir cada prueba. Cuanto más ágil sea el ida y vuelta, antes avanza tu libro hacia la impresión. Esta etapa es la que más puede estirar los tiempos del proceso.</p></div>
+      </details>
+      <details>
+        <summary>¿La editorial corrige la ortografía de mi texto?<span class="qmark">+</span></summary>
+        <div class="answer"><p>Sobre el archivo se hace una limpieza técnica, pero no se modifica el contenido de la obra. Las correcciones de texto las indicás vos sobre la galera. Si querés una revisión más minuciosa, consultá con tu diseñador/a las opciones disponibles, como el trabajo con correctores profesionales o el informe de corrección y sugerencias de la IA editorial.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="card closing">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <div class="cl-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <h2 style="font-size:clamp(1.5rem,3.6vw,2rem);">Tu libro, tal como lo soñaste</h2>
+    <p>La etapa de galeras pide atención y paciencia, pero es la que te permite dejar cada detalle como querés. Revisá con calma, marcá con claridad, y cuando todo esté perfecto, dale el OK con confianza.</p>
+    <p class="sign">Lo que autorices es lo que el mundo va a leer.</p>
+  </section>
+
+</div>
+
+<footer>
+  <p class="logo">Editorial Dunken</p>
+  <p>30 años al servicio del autor independiente · Manual de Galeras, Corrección y Autorización</p>
+</footer>
+
+<script>
+  (function(){
+    var boxes = document.querySelectorAll('.ck');
+    var done = document.getElementById('done');
+    var total = document.getElementById('total');
+    var fill = document.getElementById('fill');
+    var doneMsg = document.getElementById('doneMsg');
+    total.textContent = boxes.length;
+    function update(){
+      var c = 0;
+      boxes.forEach(function(b){ if(b.checked) c++; });
+      done.textContent = c;
+      fill.style.width = (c / boxes.length * 100) + '%';
+      doneMsg.style.display = (c === boxes.length) ? 'flex' : 'none';
+    }
+    boxes.forEach(function(b){ b.addEventListener('change', update); });
+    update();
+  })();
+</script>
+
+</body>
+</html>
